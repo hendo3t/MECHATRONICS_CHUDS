@@ -4,7 +4,7 @@
 Servo steering;
 Servo throttle;
 
-
+// SETUP AND VARIABLES FROM WALL_FOLLOW STILL NEED TO BE ADDED/UPDATED (So the func works)
 
 // Vehicle outputs
 const byte STEERING_PIN = 5;
