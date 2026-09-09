@@ -79,3 +79,34 @@ void loop() {
   // put your main code here, to run repeatedly:
 
 }
+
+void wallFollow() {
+
+  if (tk - tLoopLast >= tLoopSample) {
+    tLoopLast = tk;
+
+    // Trigger ultrasonic
+    digitalWrite(triggerPin, LOW);
+    delayMicroseconds(2);
+
+    digitalWrite(triggerPin, HIGH);
+    delayMicroseconds(10);
+
+    digitalWrite(triggerPin, LOW);
+
+    // Read echo
+    duration = pulseIn(echoPin, HIGH, 15000);
+
+    // Convert to inches
+    ACTUAL_WALL_DIST = duration * inConvert;
+
+    // Proportional control
+    STEERING_CORRECTION =
+      1500 - K * (DESIRED_WALL_DIST - ACTUAL_WALL_DIST);
+
+    steering.writeMicroseconds(STEERING_CORRECTION);
+
+    Serial.print("Wall Distance: ");
+    Serial.println(ACTUAL_WALL_DIST);
+  }
+}
