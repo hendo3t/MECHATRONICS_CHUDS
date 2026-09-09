@@ -1,4 +1,4 @@
-Fuck you
+
 #include <Servo.h>
 
 Servo steering;
